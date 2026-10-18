@@ -1,0 +1,16 @@
+{
+  "name": "cyber-eagles-cloudflare-deployment",
+  "private": true,
+  "type": "module",
+  "engines": { "node": "^22.21.0 || >=24.0.0" },
+  "scripts": {
+    "check": "npm --prefix .. run check && node run.mjs deploy --dry-run",
+    "deploy": "npm --prefix .. run check && node run.mjs deploy",
+    "login": "node run.mjs auth login --no-browser",
+    "whoami": "node run.mjs auth whoami"
+  },
+  "devDependencies": {
+    "cf": "1.0.0-beta.18",
+    "wrangler": "4.151.1"
+  }
+}

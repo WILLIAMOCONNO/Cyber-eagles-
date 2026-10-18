@@ -30,7 +30,19 @@ Run `npm run build` after source changes. The generated HTML in `public/` is com
 
 ## Hosting on Cloudflare
 
-The complete static website is in `public/`. For a Cloudflare Pages Git build, use `npm run build` as the build command and `public` as the output directory. No application server, database, or secrets are required. An existing Cloudflare project or deployment has not been changed by this work.
+The complete static website is in `public/`. For a Cloudflare Pages Git build, use `npm run build` as the build command and `public` as the output directory. No application server, database, or secrets are required.
+
+An optional deployment package in `cloudflare/` publishes the same files as a static-assets Worker named `cyber-eagles-robotics`. Use Node.js 24 or newer for deployment. Its deployment tools are separate from the dependency-free website:
+
+```sh
+npm --prefix cloudflare ci
+npm --prefix cloudflare run check
+npm --prefix cloudflare run deploy
+```
+
+The check command builds and validates the deployment without uploading it. Deployment requires a Cloudflare account login and network access to `api.cloudflare.com`. For browser authorization from another device, use `npm --prefix cloudflare run login`; check the connection with `npm --prefix cloudflare run whoami`. The launcher uses the workspace's HTTPS proxy when one is provided and writes CLI logs to the ignored `cloudflare/.cloudflare/` directory.
+
+The configuration enables the Worker's `workers.dev` address and serves the real 404 page for missing paths. It does not configure a custom domain. See Cloudflare's [project workflow](https://developers.cloudflare.com/cf/projects/) and [configuration reference](https://developers.cloudflare.com/cf/projects/cloudflare-config/).
 
 Cloudflare agent skills and MCP registration are configured separately in the cloud environment. Account authorization is separate from installing those tools.
 
