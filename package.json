@@ -1,0 +1,14 @@
+{
+  "name": "cyber-eagles-robotics",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "The Cyber Eagles FTC 27662 team website and first-season notebook.",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "npm run build && node scripts/serve.mjs",
+    "start": "node scripts/serve.mjs",
+    "check": "npm run build && node scripts/check.mjs"
+  }
+}
